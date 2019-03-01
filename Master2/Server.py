@@ -25,6 +25,7 @@ def handle_client(client):  # Takes client socket as argument.
     clients[client] = name
 
     while True:
+        print(clients)
         msg = client.recv(BUFSIZ)
         if msg != bytes("{quit}", "utf8"):
             # "{ashi2} HEllo bhai kesa h"
@@ -32,6 +33,10 @@ def handle_client(client):  # Takes client socket as argument.
                 user = "ashi2"
                 prefix = ""
                 left_message = '{ashi2} HEllo bhai kesa h'
+                for sock in clients:
+                    if clients[sock]=="ashi2":
+                        sock.send(bytes(prefix, "utf8")+left_message)
+                        break;
                 # for i in range(1,len(msg)):
                 #     if(msg[i]=='}'):
                 #         left_message = msg[i+1:]
@@ -39,7 +44,7 @@ def handle_client(client):  # Takes client socket as argument.
                 #     else:
                 #         user += msg[i]
                 # if(user in clients):
-                user.send(bytes(prefix, "utf8")+left_message)
+                # user.send(bytes(prefix, "utf8")+left_message)
                 # else:
                 #     print("User not present")
             else:
@@ -63,7 +68,7 @@ def broadcast(msg, prefix=""):  # prefix is for name identification.
 clients = {}
 addresses = {}
 
-HOST = '192.168.1.1'
+HOST = '127.0.0.1'
 PORT = 33000
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
