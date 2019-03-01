@@ -26,17 +26,9 @@ def handle_client(client):  # Takes client socket as argument.
     broadcast(bytes(msg, "utf8"))
     clients[client] = name
     while True:
-<<<<<<< HEAD
-       
-=======
-        # print(addresses)
->>>>>>> ba149a934cd7c706345ecc4980d08a473e330f7f
         msg = client.recv(BUFSIZ)
         print(msg)
         if msg != bytes("{quit}", "utf8"):
-<<<<<<< HEAD
-
-=======
             msg1 = msg.decode("utf8")
             if(msg1[0]=='{'):
                 print("hehuhu")
@@ -53,7 +45,6 @@ def handle_client(client):  # Takes client socket as argument.
                     user_list[user].send(prefix+bytes(left_msg,"utf8"))
                 else:
                     print(user+" user not present")
->>>>>>> ba149a934cd7c706345ecc4980d08a473e330f7f
             else:
                 broadcast(msg, name+": ")
         else:
@@ -77,11 +68,8 @@ clients = {}
 addresses = {}
 user_list={}
 
-<<<<<<< HEAD
 
-=======
 HOST = ''
->>>>>>> ba149a934cd7c706345ecc4980d08a473e330f7f
 PORT = 33000
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
