@@ -8,6 +8,7 @@ def accept_incoming_connections():
     """Sets up handling for incoming clients."""
     while True:
         client, client_address = SERVER.accept()
+        # print(list(client_address)[1])
         print("%s:%s has connected." % client_address)
         client.send(bytes("Greetings from the cave! Now type your name and press enter!", "utf8"))
         addresses[client] = client_address
@@ -20,33 +21,39 @@ def handle_client(client):  # Takes client socket as argument.
     name = client.recv(BUFSIZ).decode("utf8")
     welcome = 'Welcome %s! If you ever want to quit, type {quit} to exit.' % name
     client.send(bytes(welcome, "utf8"))
+    user_list[name]=client
     msg = "%s has joined the chat!" % name
     broadcast(bytes(msg, "utf8"))
     clients[client] = name
-
     while True:
+<<<<<<< HEAD
         print(clients)
+=======
+        # print(addresses)
+>>>>>>> ba149a934cd7c706345ecc4980d08a473e330f7f
         msg = client.recv(BUFSIZ)
+        print(msg)
         if msg != bytes("{quit}", "utf8"):
-            # "{ashi2} HEllo bhai kesa h"
-            if(msg==bytes("{ashi2} HEllo bhai kesa h", "utf8")):
-                user = "ashi2"
-                prefix = ""
-                left_message = '{ashi2} HEllo bhai kesa h'
-                for sock in clients:
-                    if clients[sock]=="ashi2":
-                        sock.send(bytes(prefix, "utf8")+left_message)
-                        break;
-                # for i in range(1,len(msg)):
-                #     if(msg[i]=='}'):
-                #         left_message = msg[i+1:]
-                #         break
-                #     else:
-                #         user += msg[i]
-                # if(user in clients):
-                # user.send(bytes(prefix, "utf8")+left_message)
-                # else:
-                #     print("User not present")
+<<<<<<< HEAD
+
+=======
+            msg1 = msg.decode("utf8")
+            if(msg1[0]=='{'):
+                print("hehuhu")
+                user = ""
+                left_msg = ""
+                for i in range(1,len(msg)):
+                    if(msg1[i]=='}'):
+                        left_msg = msg1[i+1:]
+                        break
+                    else:
+                        user += msg1[i]
+                prefix = bytes(user + " : ", "utf8")
+                if(user in user_list):
+                    user_list[user].send(prefix+bytes(left_msg,"utf8"))
+                else:
+                    print(user+" user not present")
+>>>>>>> ba149a934cd7c706345ecc4980d08a473e330f7f
             else:
                 broadcast(msg, name+": ")
         else:
@@ -66,9 +73,15 @@ def broadcast(msg, prefix=""):  # prefix is for name identification.
 
         
 clients = {}
+# print(clients)
 addresses = {}
+user_list={}
 
-HOST = '127.0.0.1'
+<<<<<<< HEAD
+
+=======
+HOST = ''
+>>>>>>> ba149a934cd7c706345ecc4980d08a473e330f7f
 PORT = 33000
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
