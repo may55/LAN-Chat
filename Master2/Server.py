@@ -26,7 +26,6 @@ def handle_client(client):  # Takes client socket as argument.
     broadcast(bytes(msg, "utf8"))
     clients[client] = name
     while True:
-        # print(addresses)
         msg = client.recv(BUFSIZ)
         print(msg)
         if msg != bytes("{quit}", "utf8"):
@@ -68,6 +67,7 @@ clients = {}
 # print(clients)
 addresses = {}
 user_list={}
+
 
 HOST = ''
 PORT = 33000
