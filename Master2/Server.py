@@ -27,7 +27,7 @@ def handle_client(client):  # Takes client socket as argument.
     clients[client] = name
     while True:
 <<<<<<< HEAD
-        print(clients)
+       
 =======
         # print(addresses)
 >>>>>>> ba149a934cd7c706345ecc4980d08a473e330f7f
