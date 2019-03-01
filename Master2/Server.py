@@ -27,10 +27,27 @@ def handle_client(client):  # Takes client socket as argument.
     while True:
         msg = client.recv(BUFSIZ)
         if msg != bytes("{quit}", "utf8"):
-            broadcast(msg, name+": ")
+            # "{ashi2} HEllo bhai kesa h"
+            if(msg==bytes("{ashi2} HEllo bhai kesa h", "utf8")):
+                user = "ashi2"
+                prefix = ""
+                left_message = '{ashi2} HEllo bhai kesa h'
+                # for i in range(1,len(msg)):
+                #     if(msg[i]=='}'):
+                #         left_message = msg[i+1:]
+                #         break
+                #     else:
+                #         user += msg[i]
+                # if(user in clients):
+                user.send(bytes(prefix, "utf8")+left_message)
+                # else:
+                #     print("User not present")
+            else:
+                broadcast(msg, name+": ")
         else:
             client.send(bytes("{quit}", "utf8"))
             client.close()
+            print("%s has left the chat." %clients[client])
             del clients[client]
             broadcast(bytes("%s has left the chat." % name, "utf8"))
             break
@@ -46,7 +63,7 @@ def broadcast(msg, prefix=""):  # prefix is for name identification.
 clients = {}
 addresses = {}
 
-HOST = ''
+HOST = '192.168.1.1'
 PORT = 33000
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
