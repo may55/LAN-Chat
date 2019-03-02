@@ -10,7 +10,8 @@ def receive():
     while True:
         try:
             msg = client_socket.recv(BUFSIZ).decode("utf8")
-            msg_list.insert(tkinter.END, msg)
+            if len(msg) > 0:
+                msg_list.insert(tkinter.END, msg)
         except OSError:  # Possibly client has left the chat.
             break
 

@@ -31,21 +31,14 @@ def handle_client(client):  # Takes client socket as argument.
         if msg != bytes("{quit}", "utf8"):
             msg1 = msg.decode("utf8")
             if(msg1[0]=='{'):
-                # print("hehuhu")
-                # user = ""
-                # left_msg = ""
+                
 
                 user, left_msg = msg1.split('}')
                 user = user[1:]
                 left_msg = left_msg.strip()
-                # for i in range(1,len(msg)):
-                #     if(msg1[i]=='}'):
-                #         left_msg = msg1[i+1:]
-                #         break
-                #     else:
-                #         user += msg1[i]
+                
                 prefix = bytes(name + ": ", "utf8")
-                # prefix2 = bytes(name + ": ", "utf8")
+                
                 if(user in user_list):
                     user_list[user].send(prefix+bytes(left_msg,"utf8"))
                     client.send(prefix+bytes(left_msg,"utf8"))
@@ -54,9 +47,7 @@ def handle_client(client):  # Takes client socket as argument.
             else:
                 broadcast(msg, name+": ")
         else:
-            client.send(bytes("{quit}", "utf8"))
             client.close()
-            print("%s has left the chat." %clients[client])
             del clients[client]
             broadcast(bytes("%s has left the chat." % name, "utf8"))
             break
