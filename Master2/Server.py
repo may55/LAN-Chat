@@ -31,7 +31,6 @@ def handle_client(client):  # Takes client socket as argument.
         if msg != bytes("{quit}", "utf8"):
             msg1 = msg.decode("utf8")
             if(msg1[0]=='{'):
-                
 
                 user, left_msg = msg1.split('}')
                 user = user[1:]
