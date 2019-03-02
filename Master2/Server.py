@@ -27,11 +27,9 @@ def handle_client(client):  # Takes client socket as argument.
     clients[client] = name
     while True:
         msg = client.recv(BUFSIZ)
-        print(msg)
         if msg != bytes("{quit}", "utf8"):
             msg1 = msg.decode("utf8")
             if(msg1[0]=='{'):
-                print("hehuhu")
                 user = ""
                 left_msg = ""
                 for i in range(1,len(msg)):
@@ -48,9 +46,7 @@ def handle_client(client):  # Takes client socket as argument.
             else:
                 broadcast(msg, name+": ")
         else:
-            client.send(bytes("{quit}", "utf8"))
             client.close()
-            print("%s has left the chat." %clients[client])
             del clients[client]
             broadcast(bytes("%s has left the chat." % name, "utf8"))
             break
