@@ -27,20 +27,21 @@ def handle_client(client):  # Takes client socket as argument.
     clients[client] = name
     while True:
         msg = client.recv(BUFSIZ)
+        print(msg)
         if msg != bytes("{quit}", "utf8"):
             msg1 = msg.decode("utf8")
             if(msg1[0]=='{'):
-                user = ""
-                left_msg = ""
-                for i in range(1,len(msg)):
-                    if(msg1[i]=='}'):
-                        left_msg = msg1[i+1:]
-                        break
-                    else:
-                        user += msg1[i]
-                prefix = bytes(user + " : ", "utf8")
+                
+
+                user, left_msg = msg1.split('}')
+                user = user[1:]
+                left_msg = left_msg.strip()
+                
+                prefix = bytes(name + ": ", "utf8")
+                
                 if(user in user_list):
                     user_list[user].send(prefix+bytes(left_msg,"utf8"))
+                    client.send(prefix+bytes(left_msg,"utf8"))
                 else:
                     print(user+" user not present")
             else:
