@@ -1,6 +1,6 @@
 import socket
 import sctp
-HOST='127.0.0.8'
+HOST=''
 PORT=6556
 
 sk=sctp.sctpsocket_tcp(socket.AF_INET)
