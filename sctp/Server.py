@@ -1,8 +1,10 @@
 import socket
 import sctp
 
+
 HOST = '127.1.1.1'
 PORT = 33000
+
 
 sk=sctp.sctpsocket_tcp(socket.AF_INET)
 sk.bind((HOST,PORT))

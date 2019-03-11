@@ -5,7 +5,7 @@ msgs = {} #{'a' : {'b' : ["hi", "hello"], 'c' : ["tata", "bbye"]}}
 class RHC(BaseHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)
-        self.send_header('Content-type', 'text/')
+        self.send_header('Content-type', 'text/plain')
         self.end_headers()
     
     def do_GET(self):
@@ -46,7 +46,7 @@ class RHC(BaseHTTPRequestHandler):
         self.wfile.write("posted".encode("utf-8"))
 
 def run(server_class = HTTPServer, handler_class = RHC, port=1998):
-    server_address = ('', port)
+    server_address = ('127.0.0.1', port)
     httpd = server_class(server_address, handler_class)
     print('Starting...')
     httpd.serve_forever()
