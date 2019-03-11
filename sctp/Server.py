@@ -1,12 +1,12 @@
 import socket
 import sctp
 
-HOST = '127.0.0.8'
-PORT = 6556
+HOST = '127.1.1.1'
+PORT = 33000
 
 sk=sctp.sctpsocket_tcp(socket.AF_INET)
 sk.bind((HOST,PORT))
-sk.listen()
+sk.listen(5)
 print('listening.........')
 conn,addr=sk.accept()
 print('Recived',addr)
