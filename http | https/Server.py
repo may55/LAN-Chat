@@ -36,7 +36,7 @@ class RHC(BaseHTTPRequestHandler):
 
         user = self.path.split('?')[1]
 
-        if to_user in msgs:
+  t      if to_user in msgs:
         	if user in msgs[to_user]:
         		msgs[to_user][user].append(msg)
         	else:
