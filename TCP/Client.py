@@ -57,7 +57,7 @@ top.protocol("WM_DELETE_WINDOW", on_closing)
 #----Now comes the sockets part----
 # HOST = input('Enter host: ')
 # PORT = input('Enter port: ')
-HOST = "127.1.1.1"
+HOST = "192.168.1.1"
 PORT = 33000
 if not PORT:
     PORT = 33000

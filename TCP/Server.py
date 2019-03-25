@@ -2,6 +2,7 @@
 """Server for multithreaded (asynchronous) chat application."""
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
+import sctp
 
 
 def accept_incoming_connections():
@@ -69,7 +70,7 @@ PORT = 33000
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
-SERVER = socket(AF_INET, SOCK_STREAM)
+SERVER = socket(AF_INET, SOCK_STREAM, )
 SERVER.bind(ADDR)
 
 if __name__ == "__main__":
