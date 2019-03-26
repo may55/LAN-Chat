@@ -1,8 +1,8 @@
 import socket
 import sctp
 
-HOST='192.168.1.1'
-PORT=33001
+HOST='127.1.1.1'
+PORT=33000
 
 # HOST=''
 # PORT=6556
