@@ -1,12 +1,11 @@
 import socket
 import sctp
-<<<<<<< HEAD
+
 HOST='192.168.1.1'
 PORT=33001
-=======
-HOST=''
-PORT=6556
->>>>>>> 8933f29cba04f2705125999e221615617a7541ed
+
+# HOST=''
+# PORT=6556
 
 sk=sctp.sctpsocket_tcp(socket.AF_INET)
 
