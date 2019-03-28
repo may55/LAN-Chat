@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-
+import requests
 msgs = {} #{'a' : {'b' : ["hi", "hello"], 'c' : ["tata", "bbye"]}}
 
 class RHC(BaseHTTPRequestHandler):
@@ -9,6 +9,8 @@ class RHC(BaseHTTPRequestHandler):
         self.end_headers()
     
     def do_GET(self):
+        print("sadasd")
+        return requests.get('https://www.google.com')
         self._set_headers()
         user = self.path.split('?')[1]
         if user in msgs:
