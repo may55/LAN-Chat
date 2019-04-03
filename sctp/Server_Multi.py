@@ -45,8 +45,8 @@ def broadcast(msg,prefix=""):
 		sock.send(bytes(prefix,"utf8")+msg)
 
 
-HOST = '127.1.1.1'
-PORT = 33000
+HOST = '192.162.0.104'
+PORT = 3128
 BUFFSIZE = 1024
 ADD = (HOST,PORT)
 
