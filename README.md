@@ -1,5 +1,5 @@
 # LAN-Chat
-Ongoing project
+Ongoing project TEst
 ## Check list
  - [ ] Try both XMPP, HTTPS
  - [ ] Try both TCP, SCTP
